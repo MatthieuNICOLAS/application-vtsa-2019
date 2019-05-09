@@ -1,0 +1,165 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deedy - One Page Two Column Resume
+% LaTeX Template
+% Version 1.1 (30/4/2014)
+%
+% Original author:
+% Debarghya Das (http://debarghyadas.com)
+%
+% Original repository:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TODO:
+% 1. Integrate biber/bibtex for article citation under publications.
+% 2. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add styling information for a "Projects/Hacks" section.
+% 4. Add location/address information
+% 5. Merge OpenFont and MacFonts as a single sty with options.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CHANGELOG:
+% v1.1:
+% 1. Fixed several compilation bugs with \renewcommand
+% 2. Got Open-source fonts (Windows/Linux support)
+% 3. Added Last Updated
+% 4. Move Title styling into .sty
+% 5. Commented .sty file.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the
+% vertical limit
+% 2. Hacky space on the first bullet point on the second column.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+
+\documentclass[]{deedy-resume-openfont}
+
+\usepackage[numbers]{natbib}
+\usepackage{ragged2e}
+\usepackage{acronym} % \ac[p], \acl[p], \acs[p], \acf[p]
+
+% Acronyms
+% --------
+\acrodef{CRDT}[CRDT]{Conflict-free Replicated Data Type}
+\acrodefplural{CRDT}[CRDTs]{Conflict-free Replicated Data Types}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     LAST UPDATED DATE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\lastupdated
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     CONTACT INFORMATION
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\contact
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     TITLE NAME
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{Matthieu}{NICOLAS}{ \href{mailto:matthieu.nicolas@inria.fr}{matthieu.nicolas@inria.fr} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Career}
+
+\runsubsection{PhD Student}
+\descript{| INRIA, COAST TEAM}
+\location{October 2017 - Today | Nancy, France}
+\sectionsep
+
+\hfill\begin{minipage}{\dimexpr\textwidth-0.5cm}
+\descript{EFFICIENT (RE)NAMING IN CONFLICT-FREE REPLICATED DATA TYPES}
+
+\acp{CRDT} are data structures behaving as traditional ones, like \emph{Set} or \emph{Sequence} data structures, but designed for a distributed usage.
+They are used in order to build large scale distributed systems adopting the optimistic replication model known as eventual consistency to replicate data among nodes.
+With this model, each node owning a copy of the data can edit it without any kind of coordination with other nodes.
+They then propagate the updates to others.
+The specification of \acp{CRDT} ensures that concurrent updates are resolved deterministically and that replicas eventually converge after observing all of them.
+\\
+To achieve convergence, \acp{CRDT} proposed in the literature mostly rely on identifiers to reference updated elements.
+According to the kind of \ac{CRDT}, identifiers have to comply to several constraints (unicity, belonging to a dense set...).
+\\
+Because of these constraints, the identifiers size is often not bounded.
+The size of metadata attached to each element increases with the number of updates.
+It thus exceeds more and more the size of data itself, decreasing the efficiency of the data structure over time.
+\\
+The goal of this PhD is to address this issue by
+\begin{tightemize}
+  \item Proposing more efficient specifications of identifiers according to their set of constraints,
+  \item Proposing mechanisms to rename identifiers to reduce their size.
+\end{tightemize}
+\sectionsep
+\end{minipage}
+
+\runsubsection{Research \& Development Software Engineer}
+\descript{| INRIA, COAST TEAM}
+\location{September 2014 – September 2017 | Nancy, France}
+\sectionsep
+
+\hfill\begin{minipage}{\dimexpr\textwidth-0.5cm}
+\descript{PROJECT OPENPAAS::NG}
+The goal of this project is to design an open-source entreprise social network providing a suite of
+peer-to-peer collaborative office applications.
+The aim is to offer a reliable and free alternative to existing solutions such as Google Apps.
+This project is a joint work with the team DaSciM (Data Science and Mining) from the
+computer science laboratory from the Ecole Polytechnique, Linagora, XWiki SAS and Nexedi.
+\\
+In this project, the COAST team works on topics such as the interorganisational federation of
+peer-to-peer systems and the securing of communications in this kind of collaboration.
+Furthermore, the team provides its expertise
+on eventually consistent data replication mechanisms in distributed systems.
+\\
+In order to validate them, these works have been integrated in \href{https://www.coedit.re}{\customboldlink{MUTE}},
+peer-to-peer web based real-time collaboration editor.
+\begin{tightemize}
+\item Maintaining of LogootSplit implementation
+\item Study of the literature on Conflict-free Replicated Data Types and of their use cases.
+\item Development and integration of an anti-entropy mechanism
+\end{tightemize}
+\sectionsep
+\end{minipage}
+
+\section{EDUCATION}
+
+\runsubsection{Master Degree in Computer Science}
+\descript{}
+\location{Engineering degree in Computer Science at TELECOM Nancy}
+\location{September 2011 – August 2014 | Nancy, France}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     PUBLICATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Publications}
+\renewcommand\refname{\vskip -1.5em} % Couldn't get this working from the .cls file
+\bibliographystyle{abbrv}
+\bibliography{publications}
+\nocite{*}
+
+\end{document}
